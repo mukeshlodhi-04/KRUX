@@ -1,0 +1,5 @@
+{
+  "name": "KRUX Finance Support System",
+  "description": "A dual-interface customer support system featuring a customer-facing chatbot and a support executive dashboard, built with React and powered by Gemini.",
+  "requestFramePermissions": []
+}
