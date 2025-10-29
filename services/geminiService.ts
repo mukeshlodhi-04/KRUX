@@ -3,10 +3,13 @@ import { GoogleGenAI } from "@google/genai";
 import type { Message } from '../types';
 import { GEMINI_SYSTEM_INSTRUCTION } from '../constants';
 
-const API_KEY = process.env.API_KEY;
+// Read API key from Vite environment variable. Vite exposes env vars prefixed with VITE_ to the client.
+// For local development, set VITE_GOOGLE_API_KEY in a `.env.local` file or export it before running `npm run dev`.
+// Use an any-cast to avoid TypeScript ImportMeta typing issues in some setups.
+const API_KEY = (import.meta as any).env?.VITE_GOOGLE_API_KEY as string | undefined;
 
 if (!API_KEY) {
-  console.warn("API_KEY environment variable not set. Gemini API calls will fail.");
+    console.warn("VITE_GOOGLE_API_KEY not set. Gemini API calls will fail. Set VITE_GOOGLE_API_KEY in .env.local or your environment for local dev.");
 }
 
 const ai = new GoogleGenAI({ apiKey: API_KEY! });
